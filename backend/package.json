@@ -9,6 +9,7 @@
     "linter": "eslint src/**/*.ts",
     "typeorm": "node_modules/.bin/ts-node node_modules/typeorm/cli.js",
     "add-migration": "node_modules/.bin/ts-node node_modules/typeorm/cli.js migration:generate -n",
+    "migration-revert": "node_modules/.bin/ts-node node_modules/typeorm/cli.js migration:revert",
     "migrate": "node_modules/.bin/ts-node node_modules/typeorm/cli.js migration:run",
     "generate-seed": "node_modules/.bin/ts-node node_modules/typeorm/cli.js migration:create -d data/seeders -n",
     "seed": "node_modules/.bin/ts-node data/seeders"
@@ -33,6 +34,8 @@
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "pg": "^8.4.1",
+    "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.22"
   }
 }
