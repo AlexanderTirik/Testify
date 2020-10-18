@@ -1,5 +1,5 @@
 import { Router, Request } from 'express';
-import { run } from '../../common/utils/route.helper';
+import { run } from '../../common/helpers/routeHelper';
 import { getUsers, getUserById } from '../../services/user.service';
 
 const router = Router();
