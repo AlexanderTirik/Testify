@@ -4,12 +4,13 @@ import { env } from './env';
 import routes from './api/routes';
 import { createConnection } from 'typeorm';
 import "reflect-metadata";
+import errorHandlingMiddleware from './api/middlewares/ errorHandlingMiddleware';
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(errorHandlingMiddleware);
 routes(app);
 
 app.listen(env.app.port, async () => {
