@@ -4,7 +4,7 @@ import CustomError from '../common/errors/CustomError';
 import { decrypt, encrypt } from '../common/helpers/encryptHelper';
 import { createToken } from '../common/helpers/tokenHelper';
 import { fromUserToIAuthUser, fromUserToIClientUser } from '../common/mappers/User';
-import { ILoginProfile } from '../common/models/auth/ILoginProfile';
+import { IAuthProfile } from '../common/models/auth/IAuthProfile';
 import { IAuthUser } from '../common/models/user/IAuthUser';
 import { RefreshToken } from '../data/entities/RefreshToken';
 import RefreshTokenRepository from '../data/repositories/RefreshTokenRepository';
@@ -15,10 +15,10 @@ export const getAuthUser = async (id: string) => {
   return fromUserToIClientUser(user);
 };
 
-export const getCreatedOrExistUser = async (profile: ILoginProfile): Promise<IAuthUser> => {
-  const { steamId } = profile;
+export const getCreatedOrExistUser = async (profile: IAuthProfile): Promise<IAuthUser> => {
+  const { email } = profile;
   const userRepository = getCustomRepository(UserRepository);
-  let user = await userRepository.findOne({ steamId });
+  let user = await userRepository.findOne({ email });
 
   if (user) {
     if (user.displayName !== profile.displayName) {

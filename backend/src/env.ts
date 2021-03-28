@@ -10,7 +10,8 @@ export const env = {
     server: getOsEnv('REACT_APP_SERVER'),
     secret: getOsEnv('JWT_SECRET_KEY')
   },
-  steam: {
-    apiKey: getOsEnv('STEAM_API_KEY')
+  auth: {
+    googleId: getOsEnv('GOOGLE_CLIENT_ID'),
+    googleSecret: getOsEnv('GOOGLE_SECRET')
   }
 };
