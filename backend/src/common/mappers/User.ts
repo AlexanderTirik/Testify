@@ -6,6 +6,6 @@ export const fromUserToIAuthUser = (user: User) => {
 };
 
 export const fromUserToIClientUser = (user: User) => {
-  const { id, steamId } = user;
-  return { id, steamId };
+  const { id } = user;
+  return { id };
 };

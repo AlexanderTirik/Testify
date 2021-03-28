@@ -1,22 +1,26 @@
 import passport from 'passport';
-import { Strategy as SteamStrategy } from 'passport-steam';
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { env } from '../env';
 import { getCreatedOrExistUser } from '../services/auth.service';
 
 const { server, port } = env.app;
-const { apiKey } = env.steam;
 
-const validateUser = async (_identifier: any, profile: any, done: any) => {
-  const { id, displayName } = profile;
-  const user = await getCreatedOrExistUser({ steamId: id, displayName });
+const validateUser = async (_request: any, _accessToken: any, _refreshToken: any, profile: any, done: any) => {
+  const { emails, displayName } = profile;
+  const email = emails[0].value;
+
+  // need to add validation for @knu.ua.
+
+  const user = await getCreatedOrExistUser({ email, displayName });
 
   done(null, user);
 };
 
 const options = {
-  returnURL: `${server}:${port}/api/auth/login/return`,
-  realm: `${server}:${port}`,
-  apiKey
+  clientID: env.auth.googleId,
+  clientSecret: env.auth.googleSecret,
+  callbackURL: `${server}:${port}/api/auth/login/return`,
+  passReqToCallback: true as true
 };
 
-passport.use(new SteamStrategy(options, validateUser));
+passport.use(new GoogleStrategy(options, validateUser));

@@ -3,16 +3,17 @@ import url from 'url';
 import { IAuthUser } from '../../common/models/user/IAuthUser';
 import { env } from '../../env';
 import { getAuthUser, login, refreshTokens } from '../../services/auth.service';
-import { steamMiddleware } from '../middlewares/steamMiddleware';
 import { run } from '../../common/helpers/routeHelper';
+import { googleMiddleware, googleReturnMiddleware } from '../middlewares/googleMiddleware';
 
 const router = Router();
 
 const { client } = env.app;
 
 router
-  .get('/login', steamMiddleware)
-  .get('/login/return', steamMiddleware, async (req, res) => {
+  .get('/login', googleMiddleware)
+  .get('/login/return', googleReturnMiddleware, async (req, res) => {
+    console.log('lalalaalal');
     const tokens = await login(req.user as IAuthUser);
     res.redirect(client + url.format({
       pathname: '/login',
