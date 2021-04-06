@@ -9,13 +9,13 @@ import { StudentAnswer } from './StudentAnswer';
 export class User extends AbstractEntity {
   @Column()
   email: string;
-  
+
   @Column()
   displayName: string;
-  
+
   @OneToMany(() => RefreshToken, token => token.user, { onDelete: 'CASCADE' })
   refreshTokens: RefreshToken[];
-  
+
   @OneToMany(() => Test, test => test.user, { onDelete: 'CASCADE' })
   tests: Test[]
 

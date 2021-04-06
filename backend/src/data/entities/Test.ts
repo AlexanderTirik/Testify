@@ -8,13 +8,13 @@ import { StudentAnswer } from './StudentAnswer';
 export class Test extends AbstractEntity {
   @Column()
   name: string;
-  
+
   @Column()
   start: Date;
-  
+
   @Column()
   end: Date;
-  
+
   @ManyToOne(() => User, user => user.tests)
   @JoinColumn({ name: 'userId' })
   user: User;

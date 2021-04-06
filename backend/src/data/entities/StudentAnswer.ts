@@ -10,19 +10,19 @@ export class StudentAnswer extends AbstractEntity {
   @ManyToOne(() => User, user => user.studentAnswers)
   @JoinColumn({ name: 'userId' })
   user: User;
-  
+
   @ManyToOne(() => AnswerOption, answerOption => answerOption.studentAnswers)
   @JoinColumn({ name: 'answerOptionId' })
   answerOption: AnswerOption;
-  
+
   @ManyToOne(() => Question, question => question.studentAnswers)
   @JoinColumn({ name: 'questionId' })
   question: Question;
 
   @ManyToOne(() => Test, test => test.studentAnswers)
-  @JoinColumn({ name: 'testId'})
+  @JoinColumn({ name: 'testId' })
   test: Test;
-  
+
   @RelationId((studentAnswer: StudentAnswer) => studentAnswer.user)
   readonly userId: string;
 

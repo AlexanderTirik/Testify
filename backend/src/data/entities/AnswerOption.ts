@@ -6,7 +6,7 @@ import { StudentAnswer } from './StudentAnswer';
 @Entity()
 export class AnswerOption extends AbstractEntity {
   @Column()
-  name: string;
+  text: string;
 
   @Column()
   isCorrect: boolean;
