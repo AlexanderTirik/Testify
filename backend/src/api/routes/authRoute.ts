@@ -15,7 +15,7 @@ router
   .get('/login/return', googleReturnMiddleware, async (req, res) => {
     const tokens = await login(req.user as IAuthUser);
     res.redirect(client + url.format({
-      pathname: '/login',
+      pathname: '/login-process',
       query: {
         ...tokens
       }
