@@ -4,14 +4,15 @@ import { Provider } from 'react-redux';
 import { store } from '../../store';
 import Routing from '../Routing';
 import { history } from '../../common/helpers/historyHelper';
+import Localization from '../Localization';
 
 const App = () => (
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <>
+    <Localization>
+      <ConnectedRouter history={history}>
         <Routing />
-      </>
-    </ConnectedRouter>
+      </ConnectedRouter>
+    </Localization>
   </Provider>
 );
 
