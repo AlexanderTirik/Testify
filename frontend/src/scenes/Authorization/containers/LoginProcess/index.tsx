@@ -1,14 +1,14 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { IAppState } from '../../common/models/store/IAppState';
+import { IAppState } from '../../../../common/models/store/IAppState';
 import { parse } from 'query-string';
-import { getAccessToken, setTokens } from '../../common/helpers/storageHelper';
-import { ITokens } from '../../common/models/fetch/ITokens';
-import { fetchUserRoutine } from '../../routines/user';
-import { IBindingAction } from '../../common/models/callback/IBindingAction';
+import { getAccessToken, setTokens } from '../../../../common/helpers/storageHelper';
+import { ITokens } from '../../../../common/models/fetch/ITokens';
+import { fetchUserRoutine } from '../../../../routines/user';
+import { IBindingAction } from '../../../../common/models/callback/IBindingAction';
 import { push } from 'connected-react-router';
-import { Routes } from '../../common/enums/Routes';
-import { IBindingCallback } from '../../common/models/callback/IBindingCallback';
+import { Routes } from '../../../../common/enums/Routes';
+import { IBindingCallback } from '../../../../common/models/callback/IBindingCallback';
 
 interface IProps {
   isAuthorized: boolean;
@@ -18,7 +18,7 @@ interface IProps {
   fetchUser: IBindingAction;
 }
 
-const Login: FunctionComponent<IProps> = ({
+const LoginProcess: FunctionComponent<IProps> = ({
   isAuthorized,
   search,
   fetchUser,
@@ -60,4 +60,4 @@ const mapDispatchToProps = {
   routerPush: push
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginProcess);
