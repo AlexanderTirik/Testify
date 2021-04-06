@@ -19,7 +19,7 @@ const PrivateRoute: FunctionComponent<IProps> = ({
     {...rest}
     render={props => (
       !isAuthorized
-        ? <Redirect to={{ pathname: Routes.Dashboard, state: { from: props.location } }} />
+        ? <Redirect to={{ pathname: Routes.LoginPage, state: { from: props.location } }} />
         : <Component {...props} />
     )}
   />
