@@ -1,0 +1,14 @@
+.locButton
+  border: none
+  padding: 0 5px
+  cursor: pointer
+
+.locButton:hover
+  background: var(--gray-800)
+  color: var(--gray-100)
+  transition: 0.2s
+
+.locButtonsBlock
+  .locButton
+    &:not(:last-child)
+      border-right: 1px solid var(--gray-900)
