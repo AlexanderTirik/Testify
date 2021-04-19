@@ -24,13 +24,13 @@ const Dashboard: FunctionComponent<IProps> = ({ fetchTests, tests, isLoading }) 
   return (
     <LoaderWrapper loading={isLoading}>
       <div className="d-flex justify-content-end m-2"><LanguageBar /></div>
-      <div className="d-flex flex-row">
+      <div className={`${styles.createTest} d-flex justify-content-center align-items-center`}>
+        <Plus />
+      </div>
+      <div className="d-flex flex-row align-items-stretch flex-wrap">
         {
           tests.map(t => <TestBlock {...t} />)
         }
-      </div>
-      <div className={`${styles.createTest} d-flex justify-content-center align-items-center`}>
-        <Plus />
       </div>
     </LoaderWrapper>
   );
