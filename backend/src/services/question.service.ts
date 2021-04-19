@@ -1,14 +1,14 @@
 import { getCustomRepository } from 'typeorm';
-import { fromTestToITest } from '../common/mappers/Test';
-// import { ITest } from '../common/models/test/ITest';
-// import TestRepository from '../data/repositories/TestRepository';
+import { fromQuestionToIQuestion } from '../common/mappers/Question';
+import { IQuestion } from '../common/models/question/IQuestion';
+import QuestionRepository from '../data/repositories/QuestionRepository';
 
-// export const getUserTests = async (userId: string) => {
-//   const tests = await getCustomRepository(TestRepository).findUserTests(userId);
-//   return tests.map(t => fromTestToITest(t));
-// };
+export const getTestQuestions = async (testId: string) => {
+  const questions = await getCustomRepository(QuestionRepository).findTestQuestions(testId);
+  return questions.map(q => fromQuestionToIQuestion(q));
+};
 
-// export const createTest = async (userId: string, testData: ITest) => {
-//   const createdTest = await getCustomRepository(TestRepository).createTest(userId, testData);
-//   return fromTestToITest(createdTest);
-// };
+export const createQuestion = async (testId: string, questionData: IQuestion) => {
+  const createdQuestion = await getCustomRepository(QuestionRepository).createQuestion(testId, questionData);
+  return fromQuestionToIQuestion(createdQuestion);
+};

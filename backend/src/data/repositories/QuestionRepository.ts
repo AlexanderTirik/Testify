@@ -16,6 +16,12 @@ class QuestionRepository extends Repository<Question> {
     await this.save(question);
     return question;
   }
+
+  async findTestQuestions(testId: string) {
+    const test = await getCustomRepository(TestRepository).findOne({ id: testId });
+    const questions = this.find({ tests: [test] });
+    return questions;
+  }
 }
 
 export default QuestionRepository;
