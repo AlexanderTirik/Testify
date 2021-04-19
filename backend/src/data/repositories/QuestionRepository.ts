@@ -1,4 +1,4 @@
-import { EntityRepository, getCustomRepository, In, Repository } from 'typeorm';
+import { EntityRepository, getCustomRepository, Repository } from 'typeorm';
 import { IQuestion } from '../../common/models/question/IQuestion';
 import { Question } from '../entities/Question';
 import TestRepository from './TestRepository';
@@ -18,8 +18,11 @@ class QuestionRepository extends Repository<Question> {
   }
 
   async findTestQuestions(testId: string) {
-    const test = await getCustomRepository(TestRepository).findOne({ id: testId });
-    const questions = await this.find({ where: { tests: In([test]) }, order: { createdAt: 'DESC' } });
+    const questions = await this.createQueryBuilder('question')
+      .select()
+      .leftJoin('question.tests', 'test')
+      .where('test.id IN (:...testId)', { testId: [testId] })
+      .getMany();
     return questions;
   }
 }
