@@ -5,7 +5,8 @@ import QuestionRepository from '../data/repositories/QuestionRepository';
 
 export const getTestQuestions = async (testId: string) => {
   const questions = await getCustomRepository(QuestionRepository).findTestQuestions(testId);
-  return questions.map(q => fromQuestionToIQuestion(q));
+  const ans = questions.map(q => fromQuestionToIQuestion(q));
+  return ans;
 };
 
 export const createQuestion = async (testId: string, questionData: IQuestion) => {
