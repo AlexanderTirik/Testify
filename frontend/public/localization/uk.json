@@ -1,5 +1,9 @@
 {
   "loginPage.signIn": "Увійти",
   "test.start": "Початок",
-  "test.end": "Кінець"
+  "test.end": "Кінець",
+  "test.name": "Назва",
+  "save": "Зберегти",
+  "cancel": "Скасувати",
+  "createTest.header": "Створити тест"
 }

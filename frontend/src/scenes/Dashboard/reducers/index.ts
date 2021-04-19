@@ -1,6 +1,6 @@
 import { Routine } from 'redux-saga-routines';
 import { ITest } from '../../../common/models/test/ITest';
-import { fetchTestsRoutine } from '../routines';
+import { createTestRoutine, fetchTestsRoutine } from '../routines';
 
 export type IDashboardState = {
   isLoading: boolean;
@@ -14,10 +14,17 @@ const initialState = {
 
 const dashboard = (state: IDashboardState = initialState, action: Routine<any>): IDashboardState => {
   switch (action.type) {
+    case createTestRoutine.TRIGGER:
     case fetchTestsRoutine.TRIGGER:
       return {
         ...state,
         isLoading: true
+      };
+    case createTestRoutine.SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        tests: [action.payload, ...state.tests]
       };
     case fetchTestsRoutine.SUCCESS:
       return {
@@ -25,6 +32,7 @@ const dashboard = (state: IDashboardState = initialState, action: Routine<any>):
         isLoading: false,
         tests: action.payload
       };
+    case createTestRoutine.FAILURE:
     case fetchTestsRoutine.FAILURE:
       return {
         ...state,

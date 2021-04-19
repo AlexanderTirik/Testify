@@ -1,5 +1,9 @@
 {
 "loginPage.signIn": "Sign in",
 "test.start": "Start",
-"test.end": "End"
+"test.end": "End",
+"test.name": "Name",
+"save": "Save",
+"cancel": "Cancel",
+"createTest.header": "Create test"
 }

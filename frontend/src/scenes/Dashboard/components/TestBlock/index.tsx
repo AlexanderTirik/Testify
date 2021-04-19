@@ -1,6 +1,6 @@
-import dayjs from 'dayjs';
 import React, { FunctionComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
+import dayjs from '../../../../common/config/dayjs';
 import styles from './styles.module.sass';
 
 interface IProps {
@@ -17,13 +17,13 @@ const TestBlock: FunctionComponent<IProps> = ({ name, start, end }) => (
         <span className="font-weight-bold"><FormattedMessage id="test.start" defaultMessage="Start" /></span>
         :
         {' '}
-        {dayjs(start).format('mm:hh DD-MM-YYYY')}
+        {dayjs(start).format('HH:mm DD-MM-YYYY')}
       </span>
       <span>
         <span className="font-weight-bold"><FormattedMessage id="test.end" defaultMessage="End" /></span>
         :
         {' '}
-        {dayjs(end).format('mm:hh DD-MM-YYYY')}
+        {dayjs(end).format('HH:mm DD-MM-YYYY')}
       </span>
     </div>
   </div>
