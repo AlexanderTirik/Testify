@@ -9,23 +9,27 @@ import { createTestRoutine, fetchTestsRoutine } from '../../routines';
 import { ReactComponent as Plus } from '../../../../assets/images/plus.svg';
 import styles from './styles.module.sass';
 import LanguageBar from '../../../../containers/LanguageBar';
-import CreateTestModal from '../../components/CreateTestModal';
+import CreateTestModal from '../CreateTestModal';
 import { IBindingCallback } from '../../../../common/models/callback/IBindingCallback';
+import { ICreateTest } from '../../../../common/models/test/ICreateTest';
+import { push } from 'connected-react-router';
+import { Routes } from '../../../../common/enums/Routes';
 
 interface IProps {
   tests: ITest[];
   fetchTests: IBindingAction;
   isLoading: boolean;
-  createTest: IBindingCallback<ITest>;
+  router: (route: string) => void;
+  createTest: IBindingCallback<ICreateTest>;
 }
 
-const Dashboard: FunctionComponent<IProps> = ({ fetchTests, createTest, tests, isLoading }) => {
+const Dashboard: FunctionComponent<IProps> = ({ fetchTests, createTest, router, tests, isLoading }) => {
   const [showCreateModal, setShowCreateModal] = useState(false);
   useEffect(() => {
     fetchTests();
   }, []);
 
-  const submitCreateTestModal = (test: ITest) => {
+  const submitCreateTestModal = (test: ICreateTest) => {
     createTest(test);
     setShowCreateModal(false);
   };
@@ -42,7 +46,7 @@ const Dashboard: FunctionComponent<IProps> = ({ fetchTests, createTest, tests, i
       </div>
       <div className="d-flex flex-row align-items-stretch flex-wrap">
         {
-          tests.map(t => <TestBlock {...t} />)
+          tests.map(t => <TestBlock {...t} toQuestions={() => router(Routes.Questions.replace(':testId', t.id))} />)
         }
       </div>
       <CreateTestModal
@@ -60,6 +64,7 @@ const mapStateToProps = ({ dashboard }: IAppState) => ({
 });
 
 const mapDispatchToProps = {
+  router: push,
   fetchTests: fetchTestsRoutine,
   createTest: createTestRoutine
 };

@@ -1,5 +1,4 @@
-export interface ITest {
-  id: string;
+export interface ICreateTest {
   name: string;
   start: Date;
   end: Date;

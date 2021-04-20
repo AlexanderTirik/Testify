@@ -5,5 +5,14 @@
   "test.name": "Назва",
   "save": "Зберегти",
   "cancel": "Скасувати",
-  "createTest.header": "Створити тест"
+  "add": "Add",
+  "createTest.header": "Створити тест",
+  "createQuestion.header": "Create question",
+  "questions.createQuestionButton": "Create question",
+  "question.text": "Text",
+  "question.option": "Option {number}",
+  "questions": "Questions",
+  "question": "Question {number}",
+  "question.addOption": "Add option",
+  "question.correct": "Is correct?"
 }

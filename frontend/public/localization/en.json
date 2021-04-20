@@ -5,5 +5,14 @@
 "test.name": "Name",
 "save": "Save",
 "cancel": "Cancel",
-"createTest.header": "Create test"
+"add": "Add",
+"createTest.header": "Create test",
+"createQuestion.header": "Create question",
+"questions.createQuestionButton": "Create question",
+"question.text": "Text",
+"question.option": "Option {number}",
+"questions": "Questions",
+"question": "Question {number}",
+"question.addOption": "Add option",
+"question.correct": "Is correct?"
 }

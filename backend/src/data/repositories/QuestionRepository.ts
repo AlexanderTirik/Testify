@@ -21,6 +21,12 @@ class QuestionRepository extends Repository<Question> {
     const questions = await this.createQueryBuilder('question')
       .select()
       .leftJoin('question.tests', 'test')
+      .leftJoin('question.answerOptions', 'answer_options', 'answer_options."questionId" = question.id')
+      .addSelect([
+        'answer_options.id',
+        'answer_options.text',
+        'answer_options.isCorrect'
+      ])
       .where('test.id IN (:...testId)', { testId: [testId] })
       .getMany();
     return questions;
