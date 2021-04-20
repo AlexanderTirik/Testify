@@ -12,3 +12,8 @@ export const createTest = async (userId: string, testData: ITest) => {
   const createdTest = await getCustomRepository(TestRepository).createTest(userId, testData);
   return fromTestToITest(createdTest);
 };
+
+export const deleteTest = async (userId: string, testId: string) => {
+  const deletedTest = await getCustomRepository(TestRepository).deleteTest(userId, testId);
+  return deletedTest;
+};
