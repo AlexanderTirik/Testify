@@ -27,23 +27,24 @@ class QuestionRepository extends Repository<Question> {
   }
 
   async deleteQuestion(testId: string, questionId: string) {
-    const question = await this.createQueryBuilder()
+    const question = this.findOne({ id: questionId });
+    await this.createQueryBuilder()
       .relation(Question, 'tests')
       .of({ id: questionId })
       .remove({ id: testId });
     return question;
   }
 
-  // async updateQuestion(testId: string, questionId: string, props: IQuestion) {
-  //   console.log(testId);
-  //   console.log(questionId);
-  //   const question = await this.findOne({ id: questionId });
-  //   console.log(question);
-  //   const answerOptions = await getCustomRepository(AnswerOptionRepository).findQuestionAnswerOptions(questionId);
-  //   console.log(answerOptions);
-  //   return question;
-  //   await this.save({ ...question, ...props });
-  // }
+  async updateQuestion(testId: string, questionId: string, props: IQuestion) {
+    console.log(testId);
+    console.log(questionId);
+    const question = await this.findOne({ id: questionId });
+    console.log(question);
+    const answerOptions = await getCustomRepository(AnswerOptionRepository).findQuestionAnswerOptions(questionId);
+    console.log(answerOptions);
+    return question;
+    await this.save({ ...question, ...props });
+  }
 }
 
 export default QuestionRepository;
