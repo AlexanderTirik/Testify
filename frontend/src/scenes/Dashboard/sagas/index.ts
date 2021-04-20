@@ -20,7 +20,7 @@ function* watchFetchTestsRequest() {
 
 function* createTestRequest({ payload }: any): Routine<any> {
   try {
-    const test: ITest[] = yield call(createTest, payload);
+    const test: ITest = yield call(createTest, payload);
 
     yield put(createTestRoutine.success(test));
   } catch (error) {
