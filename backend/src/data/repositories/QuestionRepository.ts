@@ -27,11 +27,19 @@ class QuestionRepository extends Repository<Question> {
   }
 
   async deleteQuestion(testId: string, questionId: string) {
-    const questionn = await this.createQueryBuilder()
+    const question = await this.createQueryBuilder()
       .relation(Question, 'tests')
       .of({ id: questionId })
       .remove({ id: testId });
-    return questionn;
+    return question;
+  }
+
+  async updateQuestion(testId: string, questionId: string, props: IQuestion) {
+    const question = await this.findOne({ id: questionId });
+    const answerOptions = await getCustomRepository(AnswerOptionRepository).findQuestionAnswerOptions(question.id);
+    console.log(answerOptions);
+    return question;
+    // await this.save({ ...question, ...props });
   }
 }
 

@@ -11,6 +11,21 @@ class UserRepository extends Repository<AnswerOption> {
     await this.save(answerOption);
     return answerOption;
   }
+
+  async findQuestionAnswerOptions(questionId: string) {
+    const answerOptions = await this.createQueryBuilder('answer_option')
+      .select()
+      .leftJoin('answer_option.questions', 'question')
+      .where('question.id = :questionId', { questionId })
+      .getMany();
+    return answerOptions;
+  }
+
+  async updateAnswerOption(answerOptionId: string, props: IAnswerOption) {
+    const answerOption = await this.findOne({ where: { id: answerOptionId } });
+    const updatedOption = await this.save({ ...answerOption, ...props });
+    return updatedOption;
+  }
 }
 
 export default UserRepository;

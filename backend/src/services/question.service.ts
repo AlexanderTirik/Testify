@@ -18,3 +18,9 @@ export const deleteQuestion = async (testId: string, questionId: string) => {
   const deletedQuestion = await getCustomRepository(QuestionRepository).deleteQuestion(testId, questionId);
   return deletedQuestion;
 };
+
+export const updateQuestion = async (testId: string, questionId: string, questionData: IQuestion) => {
+  const updatedQuestion = await getCustomRepository(QuestionRepository)
+    .updateQuestion(testId, questionId, questionData);
+  return fromQuestionToIQuestion(updatedQuestion);
+};
