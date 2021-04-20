@@ -13,3 +13,8 @@ export const createQuestion = async (testId: string, questionData: IQuestion) =>
   const createdQuestion = await getCustomRepository(QuestionRepository).createQuestion(testId, questionData);
   return fromQuestionToIQuestion(createdQuestion);
 };
+
+export const deleteQuestion = async (testId: string, questionId: string) => {
+  const deletedQuestion = await getCustomRepository(QuestionRepository).deleteQuestion(testId, questionId);
+  return deletedQuestion;
+};

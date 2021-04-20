@@ -26,8 +26,12 @@ class QuestionRepository extends Repository<Question> {
     return questions;
   }
 
-  async deleteQuestion(id: string) {
-    return this.delete(id);
+  async deleteQuestion(testId: string, questionId: string) {
+    const questionn = await this.createQueryBuilder()
+      .relation(Question, 'tests')
+      .of({ id: questionId })
+      .remove({ id: testId });
+    return questionn;
   }
 }
 
