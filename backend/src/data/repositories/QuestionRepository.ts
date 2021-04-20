@@ -10,10 +10,10 @@ class QuestionRepository extends Repository<Question> {
     const test = await getCustomRepository(TestRepository).findOne({ id: testId });
     const question = this.create({ ...props, tests: [test] });
     const answerOptionCustomRepository = getCustomRepository(AnswerOptionRepository);
+    await this.save(question);
     props.answerOptions.forEach(async answerOption => {
       await answerOptionCustomRepository.createAnswerOption(question.id, answerOption);
     });
-    await this.save(question);
     return question;
   }
 
@@ -34,13 +34,16 @@ class QuestionRepository extends Repository<Question> {
     return question;
   }
 
-  async updateQuestion(testId: string, questionId: string, props: IQuestion) {
-    const question = await this.findOne({ id: questionId });
-    const answerOptions = await getCustomRepository(AnswerOptionRepository).findQuestionAnswerOptions(question.id);
-    console.log(answerOptions);
-    return question;
-    // await this.save({ ...question, ...props });
-  }
+  // async updateQuestion(testId: string, questionId: string, props: IQuestion) {
+  //   console.log(testId);
+  //   console.log(questionId);
+  //   const question = await this.findOne({ id: questionId });
+  //   console.log(question);
+  //   const answerOptions = await getCustomRepository(AnswerOptionRepository).findQuestionAnswerOptions(questionId);
+  //   console.log(answerOptions);
+  //   return question;
+  //   await this.save({ ...question, ...props });
+  // }
 }
 
 export default QuestionRepository;
