@@ -25,6 +25,10 @@ class QuestionRepository extends Repository<Question> {
       .getMany();
     return questions;
   }
+
+  async deleteQuestion(id: string) {
+    return this.delete(id);
+  }
 }
 
 export default QuestionRepository;
