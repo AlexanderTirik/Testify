@@ -12,6 +12,8 @@ import { fetchUserRoutine } from '../../routines/user';
 import { connect } from 'react-redux';
 import { IBindingAction } from '../../common/models/callback/IBindingAction';
 import { LoaderWrapper } from '../../components/LoaderWrapper';
+import Questions from '../../scenes/Questions/containers/Questions';
+import NotFound from '../../scenes/NotFound';
 
 interface IProps {
   isAuthorized: boolean;
@@ -34,7 +36,9 @@ const Routing: FunctionComponent<IProps> = ({ isAuthorized, isLoading, fetchUser
         <Route path={Routes.LoginProcess} component={LoginProcess} />
         <Route path={Routes.LoginPage} component={LoginPage} />
         <PrivateRoute path={Routes.Dashboard} component={Dashboard} />
+        <PrivateRoute path={Routes.Questions} component={Questions} />
         <Redirect to={Routes.Dashboard} />
+        <Route component={NotFound} />
       </Switch>
     </LoaderWrapper>
   );
