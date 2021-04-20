@@ -1,4 +1,4 @@
 export enum QuestionType {
-    SingleChoise = 'Single choise',
-    MultiChoise = 'Multi choise'
+  SingleChoise = 'Single choise',
+  MultiChoise = 'Multi choise'
 }

@@ -1,6 +1,6 @@
-import { User } from "../../../data/entities/User";
+import { User } from '../../../data/entities/User';
 
 export interface ICreateRefreshToken {
-    user: User;
-    expiresAt: number;
+  user: User;
+  expiresAt: number;
 }

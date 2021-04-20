@@ -1,5 +1,5 @@
-import { QuestionType } from "../../enums/QuestionType";
-import { IAnswerOption } from "../answerOption/IAnswerOption";
+import { QuestionType } from '../../enums/QuestionType';
+import { IAnswerOption } from '../answerOption/IAnswerOption';
 
 export interface IQuestion {
   text: string;
