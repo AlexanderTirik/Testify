@@ -14,5 +14,6 @@
   "questions": "Questions",
   "question": "Question {number}",
   "question.addOption": "Add option",
-  "question.correct": "Is correct?"
+  "question.correct": "Is correct?",
+  "delete": "Видалити"
 }

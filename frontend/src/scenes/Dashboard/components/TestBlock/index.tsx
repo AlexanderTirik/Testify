@@ -35,7 +35,7 @@ const TestBlock: FunctionComponent<IProps> = ({ name, start, end, toQuestions, o
         <FormattedMessage id="questions" defaultMessage="Questions" />
       </Button>
       <Button onTap={onDelete}>
-        Delete
+        <FormattedMessage id="delete" defaultMessage="Delete" />
       </Button>
 
     </div>
