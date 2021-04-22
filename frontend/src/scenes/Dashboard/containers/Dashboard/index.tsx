@@ -22,10 +22,10 @@ interface IProps {
   isLoading: boolean;
   router: (route: string) => void;
   createTest: IBindingCallback<ICreateTest>;
-  deleteTest: IBindingAction;
+  deleteTest: IBindingCallback<string>;
 }
 
-const Dashboard: FunctionComponent<IProps> = ({ fetchTests, createTest, router, tests, isLoading }) => {
+const Dashboard: FunctionComponent<IProps> = ({ fetchTests, createTest, deleteTest, router, tests, isLoading }) => {
   const [showCreateModal, setShowCreateModal] = useState(false);
   useEffect(() => {
     fetchTests();
