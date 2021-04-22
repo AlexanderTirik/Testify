@@ -8,6 +8,11 @@ export const getUserTests = async (userId: string) => {
   return tests.map(t => fromTestToITest(t));
 };
 
+export const getTest = async (id: string) => {
+  const test = await getCustomRepository(TestRepository).findTest(id);
+  return fromTestToITest(test);
+};
+
 export const createTest = async (userId: string, testData: ITest) => {
   const createdTest = await getCustomRepository(TestRepository).createTest(userId, testData);
   return fromTestToITest(createdTest);

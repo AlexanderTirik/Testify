@@ -18,6 +18,11 @@ class TestRepository extends Repository<Test> {
     return tests;
   }
 
+  async findTest(id: string) {
+    const test = await this.findOne({ where: { id } });
+    return test;
+  }
+
   async deleteTest(userId: string, testId: string) {
     const user = await getCustomRepository(UserRepository).findOne({ id: userId });
     const test = await this.findOne({ where: { id: testId, user } });
