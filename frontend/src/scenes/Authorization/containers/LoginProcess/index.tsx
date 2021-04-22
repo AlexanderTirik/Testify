@@ -14,7 +14,7 @@ interface IProps {
   isAuthorized: boolean;
   search: string;
 
-  routerPush: IBindingCallback<Routes>;
+  router: IBindingCallback<string>;
   fetchUser: IBindingAction;
 }
 
@@ -22,21 +22,23 @@ const LoginProcess: FunctionComponent<IProps> = ({
   isAuthorized,
   search,
   fetchUser,
-  routerPush
+  router
 }) => {
   useEffect(() => {
+    const { accessToken, refreshToken, testId } = parse(search);
     if (!isAuthorized) {
-      const { accessToken, refreshToken } = parse(search);
       if (accessToken && refreshToken) {
         setTokens({ accessToken, refreshToken } as ITokens);
       }
       if (getAccessToken()) {
         fetchUser();
-      } else {
-        routerPush(Routes.Dashboard);
       }
+    }
+    if (testId) {
+      const convertedTestId = (testId as string).replaceAll('+', '-');
+      router(Routes.Test.replace(':testId', convertedTestId));
     } else {
-      routerPush(Routes.Dashboard);
+      router(Routes.Dashboard);
     }
   }, [isAuthorized]);
   return (
@@ -57,7 +59,7 @@ const mapStateToProps = (state: IAppState) => {
 
 const mapDispatchToProps = {
   fetchUser: fetchUserRoutine,
-  routerPush: push
+  router: push
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginProcess);
