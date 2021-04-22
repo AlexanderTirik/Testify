@@ -1,6 +1,6 @@
 import { Routine } from 'redux-saga-routines';
 import { IQuestion } from '../../../common/models/question/IQuestion';
-import { createQuestionRoutine, fetchQuestionsRoutine } from '../routines';
+import { createQuestionRoutine, fetchQuestionsRoutine, deleteQuestionRoutine } from '../routines';
 
 export type IQuestionsState = {
   isLoading: boolean;
@@ -16,6 +16,7 @@ const questions = (state: IQuestionsState = initialState, action: Routine<any>):
   switch (action.type) {
     case createQuestionRoutine.TRIGGER:
     case fetchQuestionsRoutine.TRIGGER:
+    case deleteQuestionRoutine.TRIGGER:
       return {
         ...state,
         isLoading: true
@@ -32,8 +33,15 @@ const questions = (state: IQuestionsState = initialState, action: Routine<any>):
         isLoading: false,
         questions: action.payload
       };
+    case deleteQuestionRoutine.SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        questions: state.questions.filter(q => q.id !== action.payload.questionId)
+      };
     case createQuestionRoutine.FAILURE:
     case fetchQuestionsRoutine.FAILURE:
+    case deleteQuestionRoutine.FAILURE:
       return {
         ...state,
         isLoading: false

@@ -7,10 +7,11 @@ import { IAppState } from '../../../../common/models/store/IAppState';
 import { LoaderWrapper } from '../../../../components/LoaderWrapper';
 import CreateQuestionModal from '../CreateQuestionModal';
 import Option from '../../components/Option';
-import { createQuestionRoutine, fetchQuestionsRoutine } from '../../routines';
+import { createQuestionRoutine, deleteQuestionRoutine, fetchQuestionsRoutine } from '../../routines';
 import { FormattedMessage } from 'react-intl';
 import Button from '../../../../components/Button';
 import styles from './styles.module.sass';
+import { IBindingAction } from '../../../../common/models/callback/IBindingAction';
 
 interface IProps {
   isLoading: boolean;
@@ -23,9 +24,11 @@ interface IProps {
 
   fetchQuestions: IBindingCallback<string>;
   createQuestion: IBindingCallback<{ testId: string; question: ICreateQuestion }>;
+  deleteQuestion: IBindingCallback<{ testId: string; questionId: string }>;
 }
 
-const Questions: FunctionComponent<IProps> = ({ isLoading, questions, match, fetchQuestions, createQuestion }) => {
+const Questions: FunctionComponent<IProps> = ({ isLoading, questions, match, fetchQuestions, createQuestion,
+  deleteQuestion }) => {
   const [showCreateQuestionModal, setShowCreateQuestionModal] = useState(false);
   useEffect(() => {
     const { testId } = match.params;
@@ -57,6 +60,11 @@ const Questions: FunctionComponent<IProps> = ({ isLoading, questions, match, fet
                 <div className="ml-2">
                   {q.answerOptions.map(ao => <Option correct={ao.isCorrect}>{ao.text}</Option>)}
                 </div>
+                <div className="p-2">
+                  <Button onTap={() => deleteQuestion({ testId: match.params.testId, questionId: q.id })}>
+                    <FormattedMessage id="delete" defaultMessage="Delete" />
+                  </Button>
+                </div>
               </div>
             ))
           }
@@ -78,7 +86,8 @@ const mapStateToProps = ({ questions }: IAppState) => ({
 
 const mapDispatchToProps = {
   fetchQuestions: fetchQuestionsRoutine,
-  createQuestion: createQuestionRoutine
+  createQuestion: createQuestionRoutine,
+  deleteQuestion: deleteQuestionRoutine
 };
 
 export default connect(
