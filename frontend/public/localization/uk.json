@@ -13,7 +13,8 @@
   "question.option": "Варіант відповіді {number}",
   "questions": "Питання",
   "question": "Питання {number}",
-  "question.addOption": "Додати питання",
-  "question.correct": "Правильна відповідь?",
-  "delete": "Видалити"
+  "question.addOption": "Додати варіант відповіді",
+  "option.correct": "Правильна відповідь?",
+  "delete": "Видалити",
+  "close": "Закрити"
 }

@@ -12,6 +12,7 @@ import { FormattedMessage } from 'react-intl';
 import Button from '../../../../components/Button';
 import styles from './styles.module.sass';
 import { IBindingAction } from '../../../../common/models/callback/IBindingAction';
+import LanguageBar from '../../../../containers/LanguageBar';
 
 interface IProps {
   isLoading: boolean;
@@ -40,8 +41,10 @@ const Questions: FunctionComponent<IProps> = ({ isLoading, questions, match, fet
     createQuestion({ question, testId });
     setShowCreateQuestionModal(false);
   };
+
   return (
     <LoaderWrapper loading={isLoading}>
+      <div className="d-flex justify-content-end m-2"><LanguageBar /></div>
       <div className="m-4">
         <Button onTap={() => setShowCreateQuestionModal(true)} size="big">
           <FormattedMessage
