@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, OneToMany } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, RelationId } from 'typeorm';
 import { AbstractEntity } from '../abstract/AbstractEntity';
 import { Question } from './Question';
 import { StudentAnswer } from './StudentAnswer';
@@ -11,8 +11,12 @@ export class AnswerOption extends AbstractEntity {
   @Column()
   isCorrect: boolean;
 
-  @ManyToMany(() => Question, question => question.answerOptions)
-  questions: Question[];
+  @ManyToOne(() => Question, question => question.answerOptions)
+  @JoinColumn({ name: 'questionId' })
+  question: Question;
+
+  @RelationId((answerOption: AnswerOption) => answerOption.question)
+  readonly questionId: string;
 
   @OneToMany(() => StudentAnswer, studentAnswer => studentAnswer.answerOption)
   studentAnswers: StudentAnswer[];

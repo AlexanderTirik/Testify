@@ -1,5 +1,18 @@
 {
 "loginPage.signIn": "Sign in",
 "test.start": "Start",
-"test.end": "End"
+"test.end": "End",
+"test.name": "Name",
+"save": "Save",
+"cancel": "Cancel",
+"add": "Add",
+"createTest.header": "Create test",
+"createQuestion.header": "Create question",
+"questions.createQuestionButton": "Create question",
+"question.text": "Text",
+"question.option": "Option {number}",
+"questions": "Questions",
+"question": "Question {number}",
+"question.addOption": "Add option",
+"question.correct": "Is correct?"
 }

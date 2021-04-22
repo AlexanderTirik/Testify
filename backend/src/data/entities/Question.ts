@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, JoinTable, OneToMany } from 'typeorm';
+import { Column, Entity, ManyToMany, OneToMany } from 'typeorm';
 import { AbstractEntity } from '../abstract/AbstractEntity';
 import { Test } from './Test';
 import { AnswerOption } from './AnswerOption';
@@ -16,8 +16,7 @@ export class Question extends AbstractEntity {
   @ManyToMany(() => Test, test => test.questions)
   tests: Test[];
 
-  @ManyToMany(() => AnswerOption, option => option.questions)
-  @JoinTable()
+  @OneToMany(() => AnswerOption, option => option.question, { onDelete: 'CASCADE' })
   answerOptions: AnswerOption[];
 
   @OneToMany(() => StudentAnswer, stusentAnswer => stusentAnswer.question)

@@ -1,6 +1,6 @@
 import { Test } from '../../data/entities/Test';
 
 export const fromTestToITest = (test: Test) => {
-  const { name, start, end } = test;
-  return { name, start, end };
+  const { id, name, start, end } = test;
+  return { id, name, start, end };
 };

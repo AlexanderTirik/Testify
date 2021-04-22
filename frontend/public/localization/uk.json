@@ -1,5 +1,18 @@
 {
   "loginPage.signIn": "Увійти",
   "test.start": "Початок",
-  "test.end": "Кінець"
+  "test.end": "Кінець",
+  "test.name": "Назва",
+  "save": "Зберегти",
+  "cancel": "Скасувати",
+  "add": "Add",
+  "createTest.header": "Створити тест",
+  "createQuestion.header": "Create question",
+  "questions.createQuestionButton": "Create question",
+  "question.text": "Text",
+  "question.option": "Option {number}",
+  "questions": "Questions",
+  "question": "Question {number}",
+  "question.addOption": "Add option",
+  "question.correct": "Is correct?"
 }
