@@ -10,9 +10,10 @@ interface IProps {
   start: Date;
   end: Date;
   toQuestions: IBindingAction;
+  onDelete: IBindingAction;
 }
 
-const TestBlock: FunctionComponent<IProps> = ({ name, start, end, toQuestions }) => (
+const TestBlock: FunctionComponent<IProps> = ({ name, start, end, toQuestions, onDelete }) => (
   <div className={`${styles.testBlock} d-flex flex-column`}>
     <span className={`${styles.name} t-20`}>{name}</span>
     <div className={`${styles.dates} d-flex flex-column justify-content-center`}>
@@ -33,6 +34,10 @@ const TestBlock: FunctionComponent<IProps> = ({ name, start, end, toQuestions })
       <Button onTap={toQuestions}>
         <FormattedMessage id="questions" defaultMessage="Questions" />
       </Button>
+      <Button onTap={onDelete}>
+        Delete
+      </Button>
+
     </div>
   </div>
 );
