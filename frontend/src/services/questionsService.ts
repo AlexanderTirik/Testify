@@ -8,3 +8,7 @@ export const fetchQuestions = async (testId: string) => (
 export const createQuestion = async (testId: string, question: IQuestion) => (
   api.post(`/api/question/${testId}`, { ...question })
 );
+
+export const deleteQuestion = async (testId: string, questionId: string) => (
+  api.delete(`/api/question/${testId}/${questionId}`)
+);

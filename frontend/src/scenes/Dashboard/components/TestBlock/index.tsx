@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
 import dayjs from '../../../../common/config/dayjs';
 import { IBindingAction } from '../../../../common/models/callback/IBindingAction';
+import { IBindingCallback } from '../../../../common/models/callback/IBindingCallback';
 import Button from '../../../../components/Button';
 import styles from './styles.module.sass';
 
@@ -35,7 +36,7 @@ const TestBlock: FunctionComponent<IProps> = ({ name, start, end, toQuestions, o
         <FormattedMessage id="questions" defaultMessage="Questions" />
       </Button>
       <Button onTap={onDelete}>
-        Delete
+        <FormattedMessage id="delete" defaultMessage="Delete" />
       </Button>
 
     </div>
