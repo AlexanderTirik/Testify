@@ -80,3 +80,13 @@ export const refreshTokens = async (encryptedId: string) => {
     refreshToken: encrypt(newRefreshToken.id)
   };
 };
+
+export const iosLogin = async (profile: IAuthProfile) => {
+  const authUser = await getCreatedOrExistUser(profile);
+  const loginData = await login(authUser);
+  const user = await getAuthUser(authUser.id);
+  return {
+    ...user,
+    ...loginData
+  };
+};

@@ -2,7 +2,7 @@ import { Request, Router } from 'express';
 import url from 'url';
 import { IAuthUser } from '../../common/models/user/IAuthUser';
 import { env } from '../../env';
-import { getAuthUser, login, refreshTokens } from '../../services/auth.service';
+import { getAuthUser, iosLogin, login, refreshTokens } from '../../services/auth.service';
 import { run } from '../../common/helpers/routeHelper';
 import { googleMiddleware, googleReturnMiddleware } from '../middlewares/googleMiddleware';
 
@@ -26,6 +26,7 @@ router
     }));
   })
   .get('/me', run((req: Request) => getAuthUser(req.user.id)))
+  .post('/ios-login', run((req: Request) => iosLogin({ ...req.body })))
   .post('/tokens', run((req: Request) => refreshTokens(req.body.refreshToken)));
 
 export default router;

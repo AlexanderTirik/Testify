@@ -14,7 +14,6 @@ import { IBindingCallback } from '../../../../common/models/callback/IBindingCal
 import { ICreateTest } from '../../../../common/models/test/ICreateTest';
 import { push } from 'connected-react-router';
 import { Routes } from '../../../../common/enums/Routes';
-import { deleteTest } from '../../../../services/dashboardService';
 
 interface IProps {
   tests: ITest[];
