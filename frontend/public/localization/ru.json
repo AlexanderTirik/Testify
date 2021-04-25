@@ -5,5 +5,16 @@
   "test.name": "Название",
   "save": "Сохранить",
   "cancel": "Отмена",
-  "createTest.header": "Создать тест"
+  "add": "Добавить",
+  "createTest.header": "Создать тест",
+  "createQuestion.header": "Создать вопрос",
+  "questions.createQuestionButton": "Создать вопрос",
+  "question.text": "Текст",
+  "question.option": "Вариант ответа {number}",
+  "questions": "Вопросы",
+  "question": "Вопрос {number}",
+  "question.addOption": "Добавить вариант ответа",
+  "option.correct": "Правильный ответ?",
+  "delete": "Удалить",
+  "close": "Закрыть"
 }

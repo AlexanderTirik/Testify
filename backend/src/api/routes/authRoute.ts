@@ -14,10 +14,14 @@ router
   .get('/login', googleMiddleware)
   .get('/login/return', googleReturnMiddleware, async (req, res) => {
     const tokens = await login(req.user as IAuthUser);
+    const state = req.query.state as string;
+    const obj = state.slice(state.indexOf('{'), state.indexOf('}') + 1);
+    const { testId } = JSON.parse(obj);
     res.redirect(client + url.format({
       pathname: '/login-process',
       query: {
-        ...tokens
+        ...tokens,
+        testId
       }
     }));
   })

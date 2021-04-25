@@ -1,4 +1,4 @@
 export enum ErrorCode {
-    InvalidAuthToken,
-    InvalidRefreshToken
+  InvalidAuthToken,
+  InvalidRefreshToken
 }

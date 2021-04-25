@@ -2,5 +2,7 @@ export enum Routes {
   BaseUrl = '/',
   LoginProcess = '/login-process',
   LoginPage = '/login',
-  Dashboard = '/dashboard'
+  Dashboard = '/dashboard',
+  Questions = '/questions/:testId',
+  Test = '/test/:testId'
 }

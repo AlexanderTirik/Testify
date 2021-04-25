@@ -1,3 +1,3 @@
 export interface IRefreshToken {
-    userId: string;
+  userId: string;
 }

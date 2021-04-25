@@ -17,6 +17,25 @@ class TestRepository extends Repository<Test> {
     const tests = this.find({ where: { user }, order: { createdAt: 'DESC' } });
     return tests;
   }
+
+  async findTest(id: string) {
+    const test = await this.findOne({ where: { id } });
+    return test;
+  }
+
+  async deleteTest(userId: string, testId: string) {
+    const user = await getCustomRepository(UserRepository).findOne({ id: userId });
+    const test = await this.findOne({ where: { id: testId, user } });
+    await this.softRemove(test);
+    return test;
+  }
+
+  async updateTest(userId: string, testId: string, props: ITest) {
+    const user = await getCustomRepository(UserRepository).findOne({ id: userId });
+    const test = await this.findOne({ where: { id: testId, user } });
+    const updatedTest = await this.save({ ...test, ...props });
+    return updatedTest;
+  }
 }
 
 export default TestRepository;
