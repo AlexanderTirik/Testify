@@ -5,7 +5,7 @@ import { IAppState } from '../../../../common/models/store/IAppState';
 import { ITest } from '../../../../common/models/test/ITest';
 import { LoaderWrapper } from '../../../../components/LoaderWrapper';
 import TestBlock from '../../components/TestBlock';
-import { createTestRoutine, fetchTestsRoutine } from '../../routines';
+import { createTestRoutine, deleteTestRoutine, fetchTestsRoutine } from '../../routines';
 import { ReactComponent as Plus } from '../../../../assets/images/plus.svg';
 import styles from './styles.module.sass';
 import LanguageBar from '../../../../containers/LanguageBar';
@@ -14,6 +14,7 @@ import { IBindingCallback } from '../../../../common/models/callback/IBindingCal
 import { ICreateTest } from '../../../../common/models/test/ICreateTest';
 import { push } from 'connected-react-router';
 import { Routes } from '../../../../common/enums/Routes';
+import { deleteTest } from '../../../../services/dashboardService';
 
 interface IProps {
   tests: ITest[];
@@ -21,9 +22,10 @@ interface IProps {
   isLoading: boolean;
   router: (route: string) => void;
   createTest: IBindingCallback<ICreateTest>;
+  deleteTest: IBindingCallback<string>;
 }
 
-const Dashboard: FunctionComponent<IProps> = ({ fetchTests, createTest, router, tests, isLoading }) => {
+const Dashboard: FunctionComponent<IProps> = ({ fetchTests, createTest, deleteTest, router, tests, isLoading }) => {
   const [showCreateModal, setShowCreateModal] = useState(false);
   useEffect(() => {
     fetchTests();
@@ -46,7 +48,13 @@ const Dashboard: FunctionComponent<IProps> = ({ fetchTests, createTest, router, 
       </div>
       <div className="d-flex flex-row align-items-stretch flex-wrap">
         {
-          tests.map(t => <TestBlock {...t} toQuestions={() => router(Routes.Questions.replace(':testId', t.id))} />)
+          tests.map(t => (
+            <TestBlock
+              {...t}
+              toQuestions={() => router(Routes.Questions.replace(':testId', t.id))}
+              onDelete={() => deleteTest(t.id)}
+            />
+          ))
         }
       </div>
       <CreateTestModal
@@ -66,7 +74,8 @@ const mapStateToProps = ({ dashboard }: IAppState) => ({
 const mapDispatchToProps = {
   router: push,
   fetchTests: fetchTestsRoutine,
-  createTest: createTestRoutine
+  createTest: createTestRoutine,
+  deleteTest: deleteTestRoutine
 };
 
 export default connect(

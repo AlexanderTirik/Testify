@@ -8,3 +8,7 @@ export const fetchTests = async () => (
 export const createTest = async (test: ITest) => (
   api.post('/api/test', { ...test })
 );
+
+export const deleteTest = async (id: string) => (
+  api.delete(`/api/test/${id}`)
+);

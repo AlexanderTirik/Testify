@@ -1,8 +1,8 @@
 import { Routine } from 'redux-saga-routines';
 import { all, put, call, takeEvery } from 'redux-saga/effects';
 import { IQuestion } from '../../../common/models/question/IQuestion';
-import { createQuestion, fetchQuestions } from '../../../services/questionsService';
-import { createQuestionRoutine, fetchQuestionsRoutine } from '../routines';
+import { createQuestion, fetchQuestions, deleteQuestion } from '../../../services/questionsService';
+import { createQuestionRoutine, deleteQuestionRoutine, fetchQuestionsRoutine } from '../routines';
 
 function* fetchQuestionsRequest({ payload }: any): Routine<any> {
   try {
@@ -32,9 +32,24 @@ function* watchCreateQuestionRequest() {
   yield takeEvery(createQuestionRoutine.TRIGGER, createQuestionRequest);
 }
 
+function* deleteQuestionRequest({ payload }: any): Routine<any> {
+  try {
+    const question: IQuestion = yield call(deleteQuestion, payload.testId, payload.questionId);
+
+    yield put(deleteQuestionRoutine.success(payload));
+  } catch (error) {
+    yield put(deleteQuestionRoutine.failure());
+  }
+}
+
+function* watchDeleteQuestionRequest() {
+  yield takeEvery(deleteQuestionRoutine.TRIGGER, deleteQuestionRequest);
+}
+
 export default function* questionsSaga() {
   yield all([
     watchFetchQuestionsRequest(),
-    watchCreateQuestionRequest()
+    watchCreateQuestionRequest(),
+    watchDeleteQuestionRequest()
   ]);
 }
