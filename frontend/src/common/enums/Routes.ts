@@ -4,5 +4,6 @@ export enum Routes {
   LoginPage = '/login',
   Dashboard = '/dashboard',
   Questions = '/questions/:testId',
-  Test = '/test/:testId'
+  IntroTest = '/test/:testId',
+  QuestionTest = '/test/:testId/questions'
 }

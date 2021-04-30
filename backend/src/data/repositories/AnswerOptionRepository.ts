@@ -4,7 +4,7 @@ import { IAnswerOption } from '../../common/models/answerOption/IAnswerOption';
 import QuestionRepository from './QuestionRepository';
 
 @EntityRepository(AnswerOption)
-class UserRepository extends Repository<AnswerOption> {
+class AnswerOptionRepository extends Repository<AnswerOption> {
   async createAnswerOption(questionId: string, props: IAnswerOption) {
     const question = await getCustomRepository(QuestionRepository).findOne({ id: questionId });
     const answerOption = this.create({ ...props, question });
@@ -25,4 +25,4 @@ class UserRepository extends Repository<AnswerOption> {
   // }
 }
 
-export default UserRepository;
+export default AnswerOptionRepository;

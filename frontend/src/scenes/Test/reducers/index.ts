@@ -1,12 +1,12 @@
 import { Routine } from 'redux-saga-routines';
-import { IQuestion } from '../../../common/models/question/IQuestion';
+import { IStudentQuestion } from '../../../common/models/question/IStudentQuestion';
 import { ITest } from '../../../common/models/test/ITest';
-import { fetchTestRoutine } from '../routines';
+import { fetchStudentQuestionsRoutine, fetchTestRoutine } from '../routines';
 
 export type ITestState = {
   isLoading: boolean;
   test?: ITest;
-  questions: IQuestion[];
+  questions: IStudentQuestion[];
 }
 
 const initialState = {
@@ -17,6 +17,7 @@ const initialState = {
 
 const test = (state: ITestState = initialState, action: Routine<any>): ITestState => {
   switch (action.type) {
+    case fetchStudentQuestionsRoutine.TRIGGER:
     case fetchTestRoutine.TRIGGER:
       return {
         ...state,
@@ -28,6 +29,13 @@ const test = (state: ITestState = initialState, action: Routine<any>): ITestStat
         isLoading: false,
         test: action.payload
       };
+    case fetchStudentQuestionsRoutine.SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        questions: action.payload
+      };
+    case fetchStudentQuestionsRoutine.FAILURE:
     case fetchTestRoutine.FAILURE:
       return {
         ...state,

@@ -32,6 +32,20 @@ class QuestionRepository extends Repository<Question> {
     return questions;
   }
 
+  async findStudentQuestions(testId: string) {
+    const questions = await this.createQueryBuilder('question')
+      .select()
+      .leftJoin('question.tests', 'test')
+      .leftJoin('question.answerOptions', 'answer_options', 'answer_options."questionId" = question.id')
+      .addSelect([
+        'answer_options.id',
+        'answer_options.text'
+      ])
+      .where('test.id IN (:...testId)', { testId: [testId] })
+      .getMany();
+    return questions;
+  }
+
   async deleteQuestion(testId: string, questionId: string) {
     const question = this.findOne({ id: questionId });
     await this.createQueryBuilder()
