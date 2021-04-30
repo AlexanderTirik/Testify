@@ -36,7 +36,7 @@ const LoginProcess: FunctionComponent<IProps> = ({
     }
     if (testId) {
       const convertedTestId = (testId as string).replaceAll('+', '-');
-      router(Routes.Test.replace(':testId', convertedTestId));
+      router(Routes.IntroTest.replace(':testId', convertedTestId));
     } else {
       router(Routes.Dashboard);
     }
