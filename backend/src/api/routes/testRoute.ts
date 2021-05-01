@@ -10,5 +10,5 @@ router
   .post('/', run((req: Request) => createTest(req.user.id, req.body)))
   .delete('/:id', run((req: Request) => deleteTest(req.user.id, req.params.id)))
   .put('/:id', run((req: Request) => updateTest(req.user.id, req.params.id, req.body)))
-  .get('/results/:id', run((req: Request) => getTestResults(req.params.id)));
+  .get('/:id/results', run((req: Request) => getTestResults(req.params.id)));
 export default router;
