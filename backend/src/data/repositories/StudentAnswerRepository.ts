@@ -41,19 +41,6 @@ class StudentAnswerRepository extends Repository<StudentAnswer> {
       .andWhere('student_answer."userId" IN (:...userId)', { userId: [userId] })
       .orderBy('answer_option."createdAt"', 'DESC')
       .getMany();
-
-    console.log('questionId:', questionId);
-    console.log('userId:', userId);
-
-    console.log('!!!:', options);
-
-    const tmp = options.map(o => ({
-      text: o.answerOption.text,
-      id: o.answerOption.id,
-      questionId: o.questionId,
-      userId: o.userId
-    }));
-    console.log(tmp);
     const optionsIds = options.map(o => o.answerOption.id);
     return optionsIds;
   }
@@ -67,14 +54,11 @@ class StudentAnswerRepository extends Repository<StudentAnswer> {
         return co;
       })
     );
-    console.log(correctOptions);
     const results = await Promise.all(
       users.map(async (userId: string) => {
         const userOptions = await Promise.all(
           questions.map(async (question: Question) => {
             const userQuestionOptions = await this.findTestQuestionStudentOptions(question.id, userId);
-            // console.log('user:', userId);
-            // console.log('options:', userQuestionOptions);
             return userQuestionOptions;
           })
         );
