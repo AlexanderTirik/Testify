@@ -1,6 +1,7 @@
 import { getCustomRepository } from 'typeorm';
 import { fromTestToITest } from '../common/mappers/Test';
 import { ITest } from '../common/models/test/ITest';
+import StudentAnswerRepository from '../data/repositories/StudentAnswerRepository';
 import TestRepository from '../data/repositories/TestRepository';
 
 export const getUserTests = async (userId: string) => {
@@ -26,4 +27,9 @@ export const deleteTest = async (userId: string, testId: string) => {
 export const updateTest = async (userId: string, testId: string, testData: ITest) => {
   const updatedTest = await getCustomRepository(TestRepository).updateTest(userId, testId, testData);
   return fromTestToITest(updatedTest);
+};
+
+export const getTestResults = async (testId: string) => {
+  const results = await getCustomRepository(StudentAnswerRepository).findResults(testId);
+  return results;
 };
