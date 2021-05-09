@@ -20,5 +20,8 @@
 "question.addOption": "Add option",
 "option.correct": "Is correct?",
 "delete": "Delete",
-"close": "Close"
+"close": "Close",
+"results": "Results",
+"results.name": "Student name",
+"results.question": "Q {n}"
 }
