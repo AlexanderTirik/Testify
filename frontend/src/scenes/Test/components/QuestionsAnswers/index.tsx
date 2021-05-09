@@ -6,7 +6,6 @@ import { IStudentOption } from '../../../../common/models/answerOption/IStudentO
 import { IBindingCallback } from '../../../../common/models/callback/IBindingCallback';
 import Button from '../../../../components/Button';
 import StudentOption from '../StudentOption';
-import styles from './styles.module.sass';
 
 interface IProps {
   text: string;

@@ -11,7 +11,6 @@ import { createQuestionRoutine, deleteQuestionRoutine, fetchQuestionsRoutine } f
 import { FormattedMessage } from 'react-intl';
 import Button from '../../../../components/Button';
 import styles from './styles.module.sass';
-import { IBindingAction } from '../../../../common/models/callback/IBindingAction';
 import LanguageBar from '../../../../containers/LanguageBar';
 
 interface IProps {

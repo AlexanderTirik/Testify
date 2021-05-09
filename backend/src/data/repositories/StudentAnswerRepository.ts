@@ -6,6 +6,7 @@ import QuestionRepository from './QuestionRepository';
 import AnswerOptionRepository from './AnswerOptionRepository';
 import { Question } from '../entities/Question';
 import { checkCorrectness } from '../../common/helpers/answerCorrectnessHelper';
+import { IUser } from '../../common/models/user/IUser';
 
 @EntityRepository(StudentAnswer)
 class StudentAnswerRepository extends Repository<StudentAnswer> {
@@ -24,12 +25,13 @@ class StudentAnswerRepository extends Repository<StudentAnswer> {
 
   async findTestUsers(testId: string) {
     const users = await this.createQueryBuilder('student_answer')
-      .select('student_answer.userId')
+      .select('user.id', 'id')
+      .addSelect('user.displayName', 'displayName')
+      .leftJoin('student_answer.user', 'user')
       .distinct(true)
       .where('student_answer.testId IN (:...testId)', { testId: [testId] })
       .getRawMany();
-    const usersIds = users.map(u => u.userId);
-    return usersIds;
+    return users;
   }
 
   async findTestQuestionStudentOptions(questionId: string, userId: string) {
@@ -55,15 +57,15 @@ class StudentAnswerRepository extends Repository<StudentAnswer> {
       })
     );
     const results = await Promise.all(
-      users.map(async (userId: string) => {
+      users.map(async (user: IUser) => {
         const userOptions = await Promise.all(
           questions.map(async (question: Question) => {
-            const userQuestionOptions = await this.findTestQuestionStudentOptions(question.id, userId);
+            const userQuestionOptions = await this.findTestQuestionStudentOptions(question.id, user.id);
             return userQuestionOptions;
           })
         );
         const correctness = questions.map((_, index) => checkCorrectness(correctOptions[index], userOptions[index]));
-        return { userId, correctness };
+        return { user, correctness };
       })
     );
     return results;

@@ -6,6 +6,6 @@ export const fromUserToIAuthUser = (user: User) => {
 };
 
 export const fromUserToIClientUser = (user: User) => {
-  const { id } = user;
-  return { id };
+  const { id, displayName } = user;
+  return { id, displayName };
 };

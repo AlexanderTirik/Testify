@@ -3,7 +3,6 @@ import { Modal } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import { IBindingAction } from '../../../../common/models/callback/IBindingAction';
 import { IBindingCallback } from '../../../../common/models/callback/IBindingCallback';
-import { ITest } from '../../../../common/models/test/ITest';
 import Button from '../../../../components/Button';
 import dayjs from 'dayjs';
 import styles from './styles.module.sass';

@@ -1,8 +1,6 @@
-import { push } from 'connected-react-router';
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { Routes } from '../../../../common/enums/Routes';
 import { ISendAnswer } from '../../../../common/models/answerOption/ISendAnswer';
 import { IBindingCallback } from '../../../../common/models/callback/IBindingCallback';
 import { IStudentQuestion } from '../../../../common/models/question/IStudentQuestion';
