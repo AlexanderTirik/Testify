@@ -5,6 +5,7 @@ import localization from './localization';
 import dashboard from '../scenes/Dashboard/reducers';
 import questions from '../scenes/Questions/reducers';
 import test from '../scenes/Test/reducers';
+import results from '../scenes/Results/reducers';
 import { history } from '../common/helpers/historyHelper';
 
 export default combineReducers({
@@ -13,5 +14,6 @@ export default combineReducers({
   localization,
   dashboard,
   questions,
-  test
+  test,
+  results
 });

@@ -6,7 +6,6 @@ import { IStudentOption } from '../../../../common/models/answerOption/IStudentO
 import { IBindingCallback } from '../../../../common/models/callback/IBindingCallback';
 import Button from '../../../../components/Button';
 import StudentOption from '../StudentOption';
-import styles from './styles.module.sass';
 
 interface IProps {
   text: string;
@@ -35,6 +34,7 @@ const QuestionsAnswers: FunctionComponent<IProps> = ({ text, options, type, onAn
 
   const onNext = () => {
     const answers = getChosedAnswers();
+    setCheckedMap({});
     if (answers.length > 0) {
       onAnswer(answers);
     }

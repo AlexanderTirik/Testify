@@ -19,5 +19,8 @@
   "question.addOption": "Добавить вариант ответа",
   "option.correct": "Правильный ответ?",
   "delete": "Удалить",
-  "close": "Закрыть"
+  "close": "Закрыть",
+  "results": "Результаты",
+  "results.name": "Имя студента",
+  "results.question": "В {n}"
 }

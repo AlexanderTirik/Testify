@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { IBindingAction } from '../../common/models/callback/IBindingAction';
 import { LoaderWrapper } from '../../components/LoaderWrapper';
 import Questions from '../../scenes/Questions/containers/Questions';
+import ResultsTable from '../../scenes/Results/containers/ResultsTable';
 import NotFound from '../../scenes/NotFound';
 import IntroTest from '../../scenes/Test/containers/Test';
 import TestQuestions from '../../scenes/Test/containers/TestQuestions';
@@ -38,6 +39,7 @@ const Routing: FunctionComponent<IProps> = ({ isAuthorized, isLoading, fetchUser
         <Route path={Routes.LoginProcess} component={LoginProcess} />
         <Route path={Routes.LoginPage} component={LoginPage} />
         <PrivateRoute path={Routes.QuestionTest} component={TestQuestions} />
+        <PrivateRoute path={Routes.Results} component={ResultsTable} />
         <Route path={Routes.IntroTest} component={IntroTest} />
         <PrivateRoute path={Routes.Dashboard} component={Dashboard} />
         <PrivateRoute path={Routes.Questions} component={Questions} />

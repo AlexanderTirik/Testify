@@ -19,5 +19,8 @@
   "question.addOption": "Додати варіант відповіді",
   "option.correct": "Правильна відповідь?",
   "delete": "Видалити",
-  "close": "Закрити"
+  "close": "Закрити",
+  "results": "Результати",
+  "results.name": "Iм'я студента",
+  "results.question": "П {n}"
 }

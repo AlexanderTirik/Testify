@@ -3,6 +3,7 @@ import { LocalizationState } from '../../../reducers/localization';
 import { IUserState } from '../../../reducers/user';
 import { IDashboardState } from '../../../scenes/Dashboard/reducers';
 import { IQuestionsState } from '../../../scenes/Questions/reducers';
+import { IResultsState } from '../../../scenes/Results/reducers';
 import { ITestState } from '../../../scenes/Test/reducers';
 
 export interface IAppState {
@@ -12,4 +13,5 @@ export interface IAppState {
   dashboard: IDashboardState;
   questions: IQuestionsState;
   test: ITestState;
+  results: IResultsState;
 }

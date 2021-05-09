@@ -34,6 +34,14 @@ const CreateQuestionModal: FunctionComponent<IProps> = ({ onSubmit, onClose, sho
     setIsCorrect(false);
   };
 
+  const closeModal = () => {
+    setText('');
+    setOptions([]);
+    setCreatingOption(false);
+    setCreatingOptionForm('');
+    onClose();
+  }
+
   const onSave = () => {
     if (countCorrect() > 0 && text.length) {
       const questionType = countCorrect() === 1 ? QuestionType.SingleChoise : QuestionType.MultiChoise;
@@ -42,7 +50,7 @@ const CreateQuestionModal: FunctionComponent<IProps> = ({ onSubmit, onClose, sho
   };
 
   return (
-    <Modal onHide={onClose} show={show}>
+    <Modal onHide={closeModal} show={show}>
       <Modal.Header closeButton>
         <Modal.Title><FormattedMessage id="createQuestion.header" defaultMessage="Create question" /></Modal.Title>
       </Modal.Header>
@@ -99,7 +107,7 @@ const CreateQuestionModal: FunctionComponent<IProps> = ({ onSubmit, onClose, sho
       </Modal.Body>
 
       <Modal.Footer>
-        <Button onTap={onClose} variant="light">
+        <Button onTap={closeModal} variant="light">
           <FormattedMessage id="close" defaultMessage="Close" />
         </Button>
         <Button onTap={onSave}>

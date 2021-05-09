@@ -14,6 +14,7 @@ import { IBindingCallback } from '../../../../common/models/callback/IBindingCal
 import { ICreateTest } from '../../../../common/models/test/ICreateTest';
 import { push } from 'connected-react-router';
 import { Routes } from '../../../../common/enums/Routes';
+import { env } from '../../../../env';
 
 interface IProps {
   tests: ITest[];
@@ -52,6 +53,8 @@ const Dashboard: FunctionComponent<IProps> = ({ fetchTests, createTest, deleteTe
               {...t}
               toQuestions={() => router(Routes.Questions.replace(':testId', t.id))}
               onDelete={() => deleteTest(t.id)}
+              onResults={() => router(Routes.Results.replace(':testId', t.id))}
+              onTestLink={() => alert(`${env.urls.client}${Routes.IntroTest.replace(':testId', t.id)}`)}
             />
           ))
         }
@@ -81,4 +84,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Dashboard);
-

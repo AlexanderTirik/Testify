@@ -18,6 +18,13 @@ class AnswerOptionRepository extends Repository<AnswerOption> {
     return answerOptions;
   }
 
+  async findQuestionCorrectOptionsIds(questionId: string) {
+    const question = await getCustomRepository(QuestionRepository).findOne({ id: questionId });
+    const correctOptions = await this.find({ where: { question, isCorrect: true }, order: { createdAt: 'DESC' } });
+    const correctOptiondIds = correctOptions.map(co => co.id);
+    return correctOptiondIds;
+  }
+
   // async updateAnswerOption(answerOptionId: string, props: IAnswerOption) {
   //   const answerOption = await this.findOne({ where: { id: answerOptionId } });
   //   const updatedOption = await this.save({ ...answerOption, ...props });
