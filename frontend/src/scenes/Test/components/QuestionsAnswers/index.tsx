@@ -35,6 +35,7 @@ const QuestionsAnswers: FunctionComponent<IProps> = ({ text, options, type, onAn
 
   const onNext = () => {
     const answers = getChosedAnswers();
+    setCheckedMap({});
     if (answers.length > 0) {
       onAnswer(answers);
     }
