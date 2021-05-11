@@ -39,8 +39,6 @@ const IntroTest: FunctionComponent<IProps> = ({ test, isLoading, match, isAuthor
     }
   }, []);
 
-  console.log('Taken:', isTestTaken({ ...test }));
-
   if (isTestAvailable({ ...test }) && !isTestTaken({ ...test })) {
     return (
       <LoaderWrapper loading={isLoading}>

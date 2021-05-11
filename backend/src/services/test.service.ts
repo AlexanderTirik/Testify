@@ -18,7 +18,6 @@ export const getTest = async (id: string, userId: string) => {
   const test = await getCustomRepository(TestRepository).findTest(id);
   const results = await getTestResults(id);
   const taken = results.some(result => result.user.id === userId);
-  console.log(test, taken);
   return fromTestToITest(test, taken);
 };
 

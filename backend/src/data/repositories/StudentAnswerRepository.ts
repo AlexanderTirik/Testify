@@ -34,13 +34,14 @@ class StudentAnswerRepository extends Repository<StudentAnswer> {
     return users;
   }
 
-  async findTestQuestionStudentOptions(questionId: string, userId: string) {
+  async findTestQuestionStudentOptions(questionId: string, userId: string, testId: string) {
     const options = await this.createQueryBuilder('student_answer')
       .select()
       .innerJoinAndSelect('student_answer.answerOption', 'answer_option',
         'answer_option.id = student_answer."answerOptionId"')
       .where('answer_option."questionId" IN (:...questionId)', { questionId: [questionId] })
       .andWhere('student_answer."userId" IN (:...userId)', { userId: [userId] })
+      .andWhere('student_answer."testId" IN (:...testId)', { testId: [testId] })
       .orderBy('answer_option."createdAt"', 'DESC')
       .getMany();
     const optionsIds = options.map(o => o.answerOption.id);
@@ -60,7 +61,7 @@ class StudentAnswerRepository extends Repository<StudentAnswer> {
       users.map(async (user: IUser) => {
         const userOptions = await Promise.all(
           questions.map(async (question: Question) => {
-            const userQuestionOptions = await this.findTestQuestionStudentOptions(question.id, user.id);
+            const userQuestionOptions = await this.findTestQuestionStudentOptions(question.id, user.id, testId);
             return userQuestionOptions;
           })
         );
