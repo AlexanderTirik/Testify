@@ -6,6 +6,7 @@
 "test.startTest": "Start test",
 "test.endTest": "Thanks for taking the test!",
 "test.unavailable": "Test has not started yet",
+"test.taken": "Test has taken already",
 "save": "Save",
 "next": "Next",
 "cancel": "Cancel",

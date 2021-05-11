@@ -3,4 +3,5 @@ export interface ITest {
   name: string;
   start: Date;
   end: Date;
+  taken: boolean;
 }

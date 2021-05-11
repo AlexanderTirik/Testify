@@ -40,7 +40,7 @@ const CreateQuestionModal: FunctionComponent<IProps> = ({ onSubmit, onClose, sho
     setCreatingOption(false);
     setCreatingOptionForm('');
     onClose();
-  }
+  };
 
   const onSave = () => {
     if (countCorrect() > 0 && text.length) {

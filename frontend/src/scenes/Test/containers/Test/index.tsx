@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Routes } from '../../../../common/enums/Routes';
 import { isTestAvailable } from '../../../../common/helpers/timeHelper';
+import { isTestTaken } from '../../../../common/helpers/testTakenHelper';
 import { IBindingCallback } from '../../../../common/models/callback/IBindingCallback';
 import { IAppState } from '../../../../common/models/store/IAppState';
 import { ITest } from '../../../../common/models/test/ITest';
@@ -38,23 +39,35 @@ const IntroTest: FunctionComponent<IProps> = ({ test, isLoading, match, isAuthor
     }
   }, []);
 
+  console.log('Taken:', isTestTaken({ ...test }));
+
+  if (isTestAvailable({ ...test }) && !isTestTaken({ ...test })) {
+    return (
+      <LoaderWrapper loading={isLoading}>
+        <div className="d-flex flex-column align-items-center mt-5">
+          <span className="t-36 mb-3">{test?.name}</span>
+          <div className="mb-3">
+            <Button variant="light" size="big" onTap={() => router(getTestQuestionsPage(match.params.testId))}>
+              <FormattedMessage id="test.startTest" defaultMessage="Start test" />
+            </Button>
+          </div>
+          <LanguageBar />
+        </div>
+      </LoaderWrapper>
+    );
+  }
+
+  if (isTestTaken({ ...test })) {
+    return (
+      <LoaderWrapper loading={isLoading}>
+        <FormattedMessage id="test.taken" defaultMessage="Test has taken already" />
+      </LoaderWrapper>
+    );
+  }
+
   return (
     <LoaderWrapper loading={isLoading}>
-      {
-    isTestAvailable({ ...test }) ? (
-      <div className="d-flex flex-column align-items-center mt-5">
-        <span className="t-36 mb-3">{test?.name}</span>
-        <div className="mb-3">
-          <Button variant="light" size="big" onTap={() => router(getTestQuestionsPage(match.params.testId))}>
-            <FormattedMessage id="test.startTest" defaultMessage="Start test" />
-          </Button>
-        </div>
-        <LanguageBar />
-      </div>
-    ) : (
       <FormattedMessage id="test.unavailable" defaultMessage="Test has not started yet" />
-    )
-  }
     </LoaderWrapper>
   );
 };
