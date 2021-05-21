@@ -3,10 +3,10 @@
   "test.start": "Початок",
   "test.end": "Кінець",
   "test.name": "Назва",
-  "test.startTest": "Start test",
-  "test.endTest": "Thanks for taking the test!",
+  "test.startTest": "Почати тест",
+  "test.endTest": "Дякуємо за проходження тесту!",
   "save": "Зберегти",
-  "next": "Next",
+  "next": "Далі",
   "cancel": "Скасувати",
   "add": "Додати",
   "createTest.header": "Створити тест",
@@ -21,6 +21,7 @@
   "delete": "Видалити",
   "close": "Закрити",
   "results": "Результати",
+  "test.link": "Посилання",
   "results.name": "Iм'я студента",
   "results.question": "П {n}"
 }
